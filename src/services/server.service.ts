@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import { Server, Socket } from "socket.io";
+import { Server, Socket } from 'socket.io';
 
 import isAuth from '../middleWares/isAuth';
 import mung from '../middleWares/mung';
@@ -16,7 +16,6 @@ import pointsRouter from '../routes/pointsRouter';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../../swagger.json';
 
-
 export const app = express();
 export const server = http.createServer(app);
 export const socket = new Server(server, {
@@ -24,11 +23,12 @@ export const socket = new Server(server, {
     origin: '*'
   }
 });
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument)
-);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+});
 app.use(cors({ origin: '*' }));
 app.use(mung);
 app.use(isAuth);
