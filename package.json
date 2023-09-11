@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/src/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "tsc",
+    "build": "npx tsc",
     "test": "test"
   },
   "author": "Andrew Troitskiy",
@@ -50,3 +50,4 @@
     "swagger-ui-express": "^4.4.0"
   }
 }
+
