@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/src/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "npm install && tsc",
+    "build": "yarn; yarn build",
     "test": "test"
   },
   "author": "Andrew Troitskiy",
